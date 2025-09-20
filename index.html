@@ -72,6 +72,8 @@
       }
 
       btn1.addEventListener("click", function () {
+        rate.style.display = "none";
+        submit.style.display = "none";
         if (name1.value.trim() === "" || name2.value.trim() === "") {
           alertBox.innerHTML = `<h1>Coi bói giữa 2 người mà điền tên 1 người sao coi?!</h1>`;
           return;
@@ -85,6 +87,7 @@
         console.log(phantram);
         if (phantram >= 50 && phantram < 80) {
           question.innerHTML = `<h1 style="color:pink">Hai bạn cũng tạm ổn. Bạn sẽ được biết nhiều hơn nếu hơn 80%</h1>`;
+          otp.style.display = "none";
         } else if (phantram >= 80) {
           question.innerHTML = `<h1 style="color:pink">Chúc mừng 2 bạn. Bạn có muốn coi 2 bạn ở bên nhau bao lâu không?</h1>`;
           otp.style.display = "block";
@@ -102,10 +105,16 @@
           };
         } else {
           question.innerHTML = `<h1 style="color:pink">Đổi người đi bạn</h1>`;
+          otp.style.display = "none";
         }
+
         answer.innerHTML = "";
       });
       btn2.addEventListener("click", function () {
+        name1.value = "";
+        name2.value = "";
+        otp.style.display = "none";
+
         body.style.background = "#8AAAE5";
         alertBox.innerHTML = `<h1 style="color:white">Bạn cho mình mấy sao?</h1>`;
         rate.style.display = "block";
@@ -116,9 +125,8 @@
           } else {
             answer.innerHTML = `<h1 style="color:white">Sai sao rồi mời chọn lại sao khác</h1>`;
           }
-          
         });
-        question.innerHTML= "";
+        question.innerHTML = "";
         answer.innerHTML = "";
       });
     </script>

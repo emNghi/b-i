@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thong tin</title>
+    <style>
+      label {
+        width: 450px;
+        display: inline-block;
+        text-align: left;
+        font-family: "Fredoka One", cursive;
+        font-size: 48px;
+        font-weight: 700;
+      }
+      body {
+        transition: background 0.8s;
+      }
+    </style>
+  </head>
+  <body>
+    <p>
+      <label for="name1">Nhập tên bạn</label>
+      <input type="text" id="name1" />
+    </p>
+    <p>
+      <label for="name2">Nhập tên người ấy</label>
+      <input type="text" id="name2" />
+    </p>
+    <button id="btn1">Xem tương lai 2 bạn</button>
+    <button id="btn2">Đánh giá chương trình</button>
+    <p></p>
+
+    <p id="alert"></p>
+    <div>
+      <select id="rate">
+        <option value="1 sao">1 sao</option>
+        <option value="2 sao">2 sao</option>
+        <option value="3 sao">3 sao</option>
+        <option value="4 sao">4 sao</option>
+        <option value="5 sao">5 sao</option>
+      </select>
+      <p></p>
+      <button id="submit">Gửi</button>
+    </div>
+    <p id="question"></p>
+    <div class="otp">
+      <button id="otp1">Có</button>
+      <button id="otp2">Không</button>
+    </div>
+    <p id="answer"></p>
+    <script>
+      let name1 = document.getElementById("name1");
+      let name2 = document.getElementById("name2");
+      let btn1 = document.getElementById("btn1");
+      let otp1 = document.getElementById("otp1");
+      let otp2 = document.getElementById("otp2");
+      let btn2 = document.getElementById("btn2");
+      let alertBox = document.getElementById("alert");
+      let question = document.getElementById("question");
+      let body = document.body;
+      var otp = document.querySelector(".otp");
+      let answer = document.getElementById("answer");
+      let rate = document.getElementById("rate");
+      let submit = document.getElementById("submit");
+
+      submit.style.display = "none";
+      rate.style.display = "none";
+      otp.style.display = "none";
+      function randomNum(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+      }
+
+      btn1.addEventListener("click", function () {
+        if (name1.value.trim() === "" || name2.value.trim() === "") {
+          alertBox.innerHTML = `<h1>Coi bói giữa 2 người mà điền tên 1 người sao coi?!</h1>`;
+          return;
+        } else if (name1.value === name2.value) {
+          alertBox.innerHTML = `<h1>Tự soi gương rồi tự bói đi má</h1>`;
+          return;
+        }
+        body.style.background = "#6F56A6";
+        let phantram = randomNum(0, 100);
+        alertBox.innerHTML = `<h1 style="color:pink">${name1.value} và ${name2.value} có tỷ lệ hợp nhau là ${phantram}%</h1>`;
+        console.log(phantram);
+        if (phantram >= 50 && phantram < 80) {
+          question.innerHTML = `<h1 style="color:pink">Hai bạn cũng tạm ổn. Bạn sẽ được biết nhiều hơn nếu % hơn 80</h1>`;
+        } else if (phantram >= 80) {
+          question.innerHTML = `<h1 style="color:pink">Chúc mừng 2 bạn. Bạn có muốn coi 2 bạn ở bên nhau bao lâu không?</h1>`;
+          otp.style.display = "block";
+          otp2.onclick = function () {
+            answer.innerHTML = `<h1 style="color:pink">Ai cho mày chọn không?</h1>`;
+          };
+          otp1.onclick = function () {
+            answer.innerHTML = `<h1 style="color:pink">Chúc mừng 2 bạn sẽ bên nhau ${randomNum(
+              0,
+              100
+            )} năm, có ${randomNum(1, 10)} đứa con, ${randomNum(
+              0,
+              5
+            )} chiếc xe và ${randomNum(0, 5)} căn nhà </h1>`;
+          };
+        } else {
+          question.innerHTML = `<h1 style="color:pink">Đổi người đi bạn</h1>`;
+        }
+        answer.innerHTML = "";
+      });
+      btn2.addEventListener("click", function () {
+        body.style.background = "#8AAAE5";
+        alertBox.innerHTML = `<h1 style="color:white">Bạn cho mình mấy sao?</h1>`;
+        rate.style.display = "block";
+        submit.style.display = "block";
+        submit.addEventListener("click", function () {
+          if (rate.value === "5 sao") {
+            answer.innerHTML = `<h1 style="color:white">Cám ơn bạn<h1>`;
+          } else {
+            answer.innerHTML = `<h1 style="color:white">Sai sao rồi mời chọn lại sao khác</h1>`;
+          }
+          
+        });
+        answer.innerHTML = "";
+      });
+    </script>
+  </body>
+</html>

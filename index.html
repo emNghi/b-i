@@ -84,7 +84,7 @@
         alertBox.innerHTML = `<h1 style="color:pink">${name1.value} và ${name2.value} có tỷ lệ hợp nhau là ${phantram}%</h1>`;
         console.log(phantram);
         if (phantram >= 50 && phantram < 80) {
-          question.innerHTML = `<h1 style="color:pink">Hai bạn cũng tạm ổn. Bạn sẽ được biết nhiều hơn nếu % hơn 80</h1>`;
+          question.innerHTML = `<h1 style="color:pink">Hai bạn cũng tạm ổn. Bạn sẽ được biết nhiều hơn nếu hơn 80%</h1>`;
         } else if (phantram >= 80) {
           question.innerHTML = `<h1 style="color:pink">Chúc mừng 2 bạn. Bạn có muốn coi 2 bạn ở bên nhau bao lâu không?</h1>`;
           otp.style.display = "block";
@@ -118,6 +118,7 @@
           }
           
         });
+        question.innerHTML= "";
         answer.innerHTML = "";
       });
     </script>
